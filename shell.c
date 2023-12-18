@@ -34,15 +34,16 @@ int main(int argc, char **argv)
 		if (getline(&command, &bufsize, stdin) == -1)
 			break;
 
-		/*remove newline*/
+		/*TODO: if command begin with ' ' or tabulation*/
+
 		command[strcspn(command, "\n")] = '\0';
 
-		/*exit*/
+		/*Exit : compare 2 strings*/
 		if (strcmp(command, "exit\n") == 0)
 			break;
 
 		/*execute*/
-		if (execute(command) == -1)
+		if (execute_command(command) == -1)
 		{
 			perror("Command execution failed");
 		}
