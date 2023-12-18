@@ -12,7 +12,10 @@
 /*Environment variable*/
 extern char **environ;
 
-/*Prototypes*/
+/*Maximum length command*/
+#define MAX_COMMAND_LENGTH 100
 
+/*Prototypes*/
+int main(int argc, char **argv);
 
 #endif
