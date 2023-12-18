@@ -39,6 +39,7 @@ int main(int argc, char **argv)
 		command[strcspn(command, "\n")] = '\0';
 
 		/*Exit : compare 2 strings*/
+		/*TODO: exit working*/
 		if (strcmp(command, "exit\n") == 0)
 			break;
 
