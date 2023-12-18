@@ -34,14 +34,20 @@ int main(int argc, char **argv)
 		if (getline(&command, &bufsize, stdin) == -1)
 			break;
 
-		/*TODO: if command begin with ' ' or tabulation*/
+		/*if command have ' ' or tabulation*/
+		while (command[0] == ' ' || command[0] == '\t')
+			command++;
+		if (command[0] == '\n' || command[0] == '\0')
+			continue;
 
 		command[strcspn(command, "\n")] = '\0';
 
 		/*Exit : compare 2 strings*/
-		/*TODO: exit working*/
-		if (strcmp(command, "exit\n") == 0)
-			break;
+		if (strcmp(command, "exit") == 0)
+		{
+			free(command);
+			exit(EXIT_SUCCESS);
+		}
 
 		/*execute*/
 		if (execute_command(command) == -1)
