@@ -10,7 +10,11 @@
 int main(int argc, char **argv)
 {
 	char *command = NULL;
+	int status = 0;
 	size_t bufsize = MAX_COMMAND_LENGTH;
+	pid_t pid;
+
+	(void)argv;
 
 	if (argc != 1)
 	{
@@ -27,7 +31,7 @@ int main(int argc, char **argv)
 			exit(EXIT_FAILURE);
 		}
 
-		printf("#cisfun$ ");
+		printf("#cisnotfun$ ");
 		fflush(stdout);
 
 		/*getline*/
@@ -49,10 +53,24 @@ int main(int argc, char **argv)
 			exit(EXIT_SUCCESS);
 		}
 
-		/*execute*/
-		if (execute_command(command) == -1)
+		pid = fork();
+
+		if (pid == -1)
 		{
-			perror("Command execution failed");
+			perror("Error");
+			exit(EXIT_FAILURE);
+		}
+		else if (pid == 0)
+		{
+			/*execute the command*/
+			argv = tokenize(command);
+			execute_command(command);
+			exit(EXIT_SUCCESS);
+		}
+		else
+		{
+			/*wait for the child process to terminate*/
+			wait(&status);
 		}
 	}
 	free(command);
