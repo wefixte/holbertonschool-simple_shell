@@ -16,23 +16,19 @@ int main(int argc, char **argv)
 
 	(void)argv;
 
-	if (argc != 1)
-	{
-		perror("Number of arguments is incorrect");
-		exit(EXIT_FAILURE);
-	}
-
 	while (1)
 	{
 		/*issaty: check if stdin come from an actif terminal*/
-		if (isatty(STDIN_FILENO) == 0)
-		{
-			perror("Not a terminal");
-			exit(EXIT_FAILURE);
-		}
+		if (isatty(STDIN_FILENO))
+			printf("#cisnotfun$ ");
 
-		printf("#cisnotfun$ ");
 		fflush(stdout);
+
+		if (argc != 1)
+		{
+		perror("Number of arguments is incorrect");
+		exit(EXIT_FAILURE);
+		}
 
 		/*getline*/
 		if (getline(&command, &bufsize, stdin) == -1)
@@ -49,7 +45,6 @@ int main(int argc, char **argv)
 		/*Exit : compare 2 strings*/
 		if (strcmp(command, "exit") == 0)
 		{
-			free(command);
 			exit(EXIT_SUCCESS);
 		}
 
@@ -63,13 +58,15 @@ int main(int argc, char **argv)
 		else if (pid == 0)
 		{
 			/*execute the command*/
+			printf("Child process, PID: %d\n", getpid());
 			argv = tokenize(command);
 			execute_command(command);
+			free(argv);
 			exit(EXIT_SUCCESS);
 		}
 		else
 		{
-			/*wait for the child process to terminate*/
+			printf("Parent process, PID: %d\n", getpid());
 			wait(&status);
 		}
 	}
