@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
  * execute_command - Function to execute the command
  * @command: Pointer to array of strings representing the command to executed
@@ -13,29 +14,34 @@ int execute_command(char *command)
 
 	if (argument == NULL)
 	{
+		free(argument);
 		perror("Error");
 		exit(EXIT_FAILURE);
 	}
+
 	if (command[0] == '/' || command[0] == '.')
-		path = command;
-
+	{
+		path = strdup(command);
+	}
 	else
-		path = getpath(argument[0]);
-	if (path == NULL)
-		{
-		free(argument);
-		perror("Error");
-		exit(EXIT_FAILURE);
-		}
+	{
+		path = getpath(command);
+	}
 
-		if (execve(path, argument, environ) == -1)
-		{
-		perror("Error");
+	if (path == NULL)
+	{
 		free(path);
 		free(argument);
+		perror("Error");
 		exit(EXIT_FAILURE);
-		}
-	free(path);
-	free(argument);
+	}
+
+	if (execve(command, argument, environ) == -1)
+	{
+		free(path);
+		free(argument);
+		perror("Error");
+		exit(EXIT_FAILURE);
+	}
 	return (1);
 }

@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <sys/types.h>
+#include <sys/stat.h>
 
 /*Environment variable*/
 extern char **environ;
@@ -17,5 +18,8 @@ extern char **environ;
 
 /*Prototypes*/
 int main(int argc, char **argv);
+int execute_command(char *command);
+char **tokenize(char *input);
+char *getpath(char *input);
 
 #endif
