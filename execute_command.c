@@ -11,6 +11,7 @@ int execute_command(char *command)
 	char **argument, *path;
 
 	argument = tokenize(command);
+
 	if (argument == NULL)
 	{
 		free(argument);
