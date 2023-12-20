@@ -1,9 +1,11 @@
 #include "main.h"
 
-
-
-/** Function to execute the command */
-int execute_command(char **command, char *path, char **directories);
+/**
+ * main - main function for shell
+ * @argc: number of arguments
+ * @argv: array of arguments
+ * Return: 0 on success
+*/
 
 int main(int argc, char **argv)
 {
@@ -18,6 +20,7 @@ int main(int argc, char **argv)
 
 	while (1)
 	{
+		/*issaty: check if stdin come from an actif terminal*/
 		if (isatty(STDIN_FILENO) == 0)
 		{
 			perror("Not a terminal");
@@ -27,32 +30,25 @@ int main(int argc, char **argv)
 		printf("#cisfun$ ");
 		fflush(stdout);
 
+		/*getline*/
 		if (getline(&command, &bufsize, stdin) == -1)
 			break;
 
+		/*TODO: if command begin with ' ' or tabulation*/
+
 		command[strcspn(command, "\n")] = '\0';
 
-		if (strcmp(command, "exit") == 0)
+		/*Exit : compare 2 strings*/
+		/*TODO: exit working*/
+		if (strcmp(command, "exit\n") == 0)
 			break;
 
-		char **commandArray = malloc(2 * sizeof(char *));
-		commandArray[0] = command;
-		commandArray[1] = NULL;
-
-		char *path = NULL;
-		char **directories = malloc(2 * sizeof(char *));
-		directories[0] = "/bin";
-		directories[1] = NULL;
-
-		if (execute_command(commandArray, path, directories) != 0)
+		/*execute*/
+		if (execute_command(command) == -1)
 		{
 			perror("Command execution failed");
 		}
-
-		free(commandArray);
-		free(directories);
 	}
 	free(command);
 	return (0);
 }
-
