@@ -58,7 +58,6 @@ int main(int argc, char **argv)
 		else if (pid == 0)
 		{
 			/*execute the command*/
-			printf("Child process, PID: %d\n", getpid());
 			argv = tokenize(command);
 			execute_command(command);
 			free(argv);
@@ -66,7 +65,6 @@ int main(int argc, char **argv)
 		}
 		else
 		{
-			printf("Parent process, PID: %d\n", getpid());
 			wait(&status);
 		}
 	}
