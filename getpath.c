@@ -14,7 +14,7 @@ char *getpath(char *input)
 
 	path = getenv("PATH");
 	if (path == NULL || strlen(path) == 0)
-		return strdup(input);
+		return (strdup(input));
 
 	copypath = strdup(path);
 	token = strtok(path, ":");
