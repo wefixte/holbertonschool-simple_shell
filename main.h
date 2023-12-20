@@ -13,13 +13,11 @@
 /*Environment variable*/
 extern char **environ;
 
-/*Maximum length command*/
-#define MAX_COMMAND_LENGTH 100
-
 /*Prototypes*/
-int main(int argc, char **argv);
+int main(void);
 int execute_command(char *command);
 char **tokenize(char *input);
 char *getpath(char *input);
+char *read_command(void);
 
 #endif
