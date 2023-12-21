@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * main - main function for shell
+ * main - Entry point of the shell program
  * Return: 0 on success
 */
 
@@ -13,7 +13,7 @@ int main(void)
 
 	while (1)
 	{
-		command = read_command();
+		command = read_command(); /*read the command from the user*/
 		command_start = command;
 		if (command == NULL)
 		{
@@ -21,9 +21,9 @@ int main(void)
 			exit(EXIT_SUCCESS);
 		}
 
-		while (command[0] == ' ' || command[0] == '\t')
+		while (command[0] == ' ' || command[0] == '\t') /*skip leading spaces*/
 			command++;
-		if (command[0] == '\n' || command[0] == '\0')
+		if (command[0] == '\n' || command[0] == '\0') /*if command is empty*/
 		{
 			free(command_start);
 			continue;
@@ -52,7 +52,9 @@ int main(void)
 		}
 		else
 		{
-			wait(&status);
+			waitpid(pid, &status, 0); /*wait for a specific PID*/
+			if (WIFEXITED(status)) /*if child process terminated normally*/
+				status = WEXITSTATUS(status); /*get the exit status of the child process*/
 			free(command_start);
 		}
 	}
