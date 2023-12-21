@@ -1,0 +1,33 @@
+.TH simple_shell 1 "Decembre 2023" "Simple Shell Manual"
+.SH NAME
+.B simple_shell
+Creation of a simple UNIX command interpreter.
+
+.SH LIBRARY
+simple_shell use <stdio.h> <stdlib.h> <string.h> <unistd.h> <sys/wait.h> <sys/types.h> and <sys/stat.h>.
+
+.SH SYNOPSIS
+simple_shell is a command interpreter for UNIX systems. It is designed to provide a simple and intuitive interface for executing commands. The program uses various libraries including <stdio.h>, <stdlib.h>, <string.h>, <unistd.h>, <sys/wait.h>, <sys/types.h>, and <sys/stat.h>. It can be used to execute commands and scripts. The main function of the simple_shell program returns an integer value. 
+
+.SH USAGE
+After compiled, you can lauch the shell in interactive mode by typing ./hsh in the terminal you use.
+
+.SH MODE
+The simple_shell can be use in two differents modes : interactive mode with the prompt, or non-interactive mode.
+.IP Exemples
+.B $cisnotfun ls
+.B echo "/bin/ls" | ./hsh
+
+.SH RETURN VALUE
+The main function of the simple_shell program returns an integer value. A return value of 0 indicates successful execution of the program, while a non-zero return value indicates an error or abnormal termination.
+
+.SH EXIT
+The `exit` command is used to terminate the simple_shell program.
+
+.SH BUGS
+No known bugs.
+
+.SH AUTHOR
+Written by Cassandre Pernelle - Abdelmalek M'hamed
+.br
+Copyright © 2023 Holberton School Lille
