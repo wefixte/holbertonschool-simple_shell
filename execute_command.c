@@ -8,6 +8,7 @@
 int execute_command(char *command)
 {
 	char **argument, *path;
+	int index;
 
 	argument = tokenize(command);
 
@@ -17,7 +18,7 @@ int execute_command(char *command)
 		exit(EXIT_FAILURE);
 	}
 	if (command[0] == '/' || command[0] == '.')
-		path = command;
+		path = strdup(command);
 	else
 		path = getpath(argument[0]);
 	if (path == NULL)
@@ -29,8 +30,11 @@ int execute_command(char *command)
 	if (execve(path, argument, environ) == -1)
 	{
 		perror("Error");
+		for (index = 0; argument[index] != NULL; index++)
+			free(argument[index]);
 		free(path);
 		free(argument);
+		free(command);
 		exit(EXIT_FAILURE);
 	}
 	free(path);

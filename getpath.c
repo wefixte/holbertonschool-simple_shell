@@ -9,7 +9,7 @@
 
 char *getpath(char *input)
 {
-	char *path, *token, *copypath, *entirepath;
+	char *path, *token, *copypath, *entirepath = NULL;
 	int length;
 
 	path = getenv("PATH");

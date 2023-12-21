@@ -19,7 +19,10 @@ char *read_command(void)
 
 		read = getline(&command, &size, stdin);
 		if (read == -1)
+		{
+			free(command);
 			return (NULL);
+		}
 		command[read - 1] = '\0';
 		return (command);
 }

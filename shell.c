@@ -7,41 +7,55 @@
 
 int main(void)
 {
-	char *command = NULL;
-	char **argv;
+	char *command = NULL, *command_start = NULL;
 	int status = 0;
 	pid_t pid;
 
 	while (1)
 	{
 		command = read_command();
+		command_start = command;
 		if (command == NULL)
 		{
 			printf("\n");
+			free(command_start);
 			exit(EXIT_SUCCESS);
 		}
 
 		while (command[0] == ' ' || command[0] == '\t')
 			command++;
 		if (command[0] == '\n' || command[0] == '\0')
+		{
+			free(command_start);
 			continue;
+		}
 
-		if (strcmp(command, "exit") == 0) /*Exit : compare 2 strings*/
+		if (strcmp(command, "exit") == 0)
+		{
+			free(command_start);
 			exit(EXIT_SUCCESS);
+		}
 
 		pid = fork(); /*create a new process*/
-		if (pid == -1) /*if fork failed*/
+
+		if (pid == -1)
+		{
+			free(command);
 			perror("Error");
+		}
+
 		else if (pid == 0) /*Child process*/
 		{
 			/*execute the command*/
-			argv = tokenize(command);
-			execute_command(argv[0]);
+			execute_command(command);
+			free(command_start);
 			exit(EXIT_SUCCESS);
 		}
-		else /*Parent process*/
+		else
+		{
 			wait(&status);
+			free(command_start);
+		}
 	}
-	free(command);
 	return (0);
 }
