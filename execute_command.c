@@ -10,26 +10,29 @@ int execute_command(char *command)
 	char **argument, *path;
 	int index;
 
-	argument = tokenize(command);
-
+	argument = tokenize(command); /*tokenize the command*/
 	if (argument == NULL)
 	{
 		perror("Error");
 		exit(EXIT_FAILURE);
 	}
+
+	/*check if the command is a built-in*/
 	if (command[0] == '/' || command[0] == '.')
 		path = strdup(command);
 	else
-		path = getpath(argument[0]);
+		path = getpath(argument[0]); /*get the full path of the command*/
+
 	if (path == NULL)
 	{
 		free(argument);
 		perror("Error");
 		exit(EXIT_FAILURE);
 	}
-	if (execve(path, argument, environ) == -1)
+
+	if (execve(path, argument, environ) == -1) /*execute the command*/
 	{
-		perror("Error");
+		perror("Error in execve");
 		for (index = 0; argument[index] != NULL; index++)
 			free(argument[index]);
 		free(path);
