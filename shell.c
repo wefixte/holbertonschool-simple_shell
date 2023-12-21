@@ -17,7 +17,6 @@ int main(void)
 		command_start = command;
 		if (command == NULL)
 		{
-			printf("\n");
 			free(command_start);
 			exit(EXIT_SUCCESS);
 		}
