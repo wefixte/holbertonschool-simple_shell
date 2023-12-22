@@ -142,14 +142,15 @@ No known Bugs.
 
 ## Authors:
 
-Cassandre Pernelle | [Github](https://github.com/wefixte/holbertonschool-simple_shell)
+Cassandre Pernelle | [Github](https://github.com/wefixte)
 
-Abdelmalek M'hamed | [Github](https://github.com/wefixte/holbertonschool-simple_shell) 
+Abdelmalek M'hamed | [Github](https://github.com/MLK59) 
 
 ----------
 ## Licence:
 
-Copyright © <22/12/2023>, Abdelmalek M'hamed & Cassandre Pernelle
+Copyright © <22/12/2023>, Abdelmalek M'hamed & Cassandre Pernelle.
+
 For more informations, consult the LICENCE.md file.
 Holberton School - Foundations - Low-level programming & Algorithm.
 
