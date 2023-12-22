@@ -149,8 +149,8 @@ Abdelmalek M'hamed | [Github](https://github.com/wefixte/holbertonschool-simple_
 ----------
 ## Licence:
 
-Given the open source nature of the project, no special licenses or license whatsoever is needed to use, modify, and redistribute the simple shell program.
-
-Holberton School - Foundations - Low-level programming & Algorithm  Linux and Unix system programming.
+Copyright © <22/12/2023>, Abdelmalek M'hamed & Cassandre Pernelle
+For more informations, consult the LICENCE.md file.
+Holberton School - Foundations - Low-level programming & Algorithm.
 
 Decembre, 2023, France
