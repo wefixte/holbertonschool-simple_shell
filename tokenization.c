@@ -1,6 +1,6 @@
 #include "main.h"
 /**
-* tokenize - Tokenize a string
+* tokenize - Divide a string into tokens using delimiters
 * @input: The string to tokenize
 * Return: A pointer to an array of strings
 */
