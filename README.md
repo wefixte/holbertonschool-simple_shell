@@ -130,7 +130,7 @@ When you want to exit the shell, you can use one of the following methods:
 
 ## Flowcharts Simple shell:
 
-![](https://imgur.com/a/Lmn3A6t.jpeg)
+![](https://i.imgur.com/Ldo2STr.jpg)
 
         
 ----------
